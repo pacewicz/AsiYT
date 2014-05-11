@@ -1,5 +1,5 @@
 language: ruby
 cache: bundler
 rvm:
-  - 2.1.1p76
+  - 2.1.1
   - ruby-head
