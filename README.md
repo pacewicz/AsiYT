@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/pacewicz/AsiYT.svg?branch=master)](https://travis-ci.org/pacewicz/AsiYT)
 AsiYT
 =====
 
