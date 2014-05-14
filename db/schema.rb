@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140514205710) do
+ActiveRecord::Schema.define(version: 20140514212439) do
 
   create_table "clips", force: true do |t|
     t.string   "yt_id"
@@ -32,6 +32,12 @@ ActiveRecord::Schema.define(version: 20140514205710) do
   create_table "playlists", force: true do |t|
     t.string   "name"
     t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "ratings", force: true do |t|
+    t.integer  "value"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
