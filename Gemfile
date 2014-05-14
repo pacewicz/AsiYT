@@ -35,6 +35,8 @@ end
 
 gem 'bootstrap-sass', '~> 3.1.1'
 
+gem 'video_info', '~> 2.3.1'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
