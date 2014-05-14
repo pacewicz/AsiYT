@@ -10,7 +10,7 @@ class PlaylistsController < ApplicationController
   def create
     @playlist = Playlist.new(playlist_params)
     @playlist.save
-    redirect_to @playlist
+    redirect_to :back
   end
   def destroy
     @playlist.destroy
