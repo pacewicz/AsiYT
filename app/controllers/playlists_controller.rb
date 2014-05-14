@@ -1,5 +1,5 @@
 class PlaylistsController < ApplicationController
-  before_action :set_playlist, only: [:show, :destroy]
+  before_action :set_playlist, only: [:show, :edit, :update, :destroy]
 
   def show
   end
@@ -12,6 +12,20 @@ class PlaylistsController < ApplicationController
     @playlist.save
     redirect_to :back
   end
+
+  def edit
+  end
+
+  def update
+    respond_to do |format|
+      if @playlist.update(playlist_params)
+        format.html { redirect_to @playlist, notice: 'Playlist' }
+      else
+        format.html { render action: 'edit' }
+      end
+    end
+  end
+
   def destroy
     @playlist.destroy
     respond_to do |format|

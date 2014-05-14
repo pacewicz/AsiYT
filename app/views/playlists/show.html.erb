@@ -1,3 +1,30 @@
+<div class="modal fade" id="EditPlaylistModal" tabindex="-1" role="dialog" aria-labelledby="EditPlaylistModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="EditPlaylistModalLabel">Rename playlist</h4>
+      </div>
+      <div class="modal-body">
+        <%= form_for (@playlist), :html => {:class => "form-horizontal"} do |form| %>
+            <fieldset>
+              <div class="control-group">
+                <div class="input-group">
+                  <span class="input-group-addon">name</span>
+                  <%= form.text_field :name, :class => 'form-control' %>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <%= form.submit :class => "btn btn-primary", 'value' => 'Rename' %>
+              </div>
+            </fieldset>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="modal fade" id="AddClipModal" tabindex="-1" role="dialog" aria-labelledby="AddClipModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -81,7 +108,6 @@
 
   <div id="sidebar-wrapper">
     <div class="sidebar-nav">
-
       <div class="btn-group settings-buttons">
         <button type="button" class="btn btn-default" data-toggle="modal" data-target="#AddClipModal">
           <span class="glyphicon glyphicon glyphicon-plus"></span> New clip
@@ -93,7 +119,7 @@
             <span class="caret"></span>
           </button>
           <ul class="dropdown-menu" role="menu" aria-labelledby="playlist-settings-btn">
-            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Rename</a></li>
+            <li><a href="#" data-toggle="modal" data-target="#EditPlaylistModal">Rename</a></li>
             <li role="presentation" class="divider"></li>
             <li role="presentation">
               <%= link_to 'Delete playlist', @playlist, method: :delete, data: { confirm: 'Are you sure you want to delete playlist with all clips?' }, 'tabindex' => '-1', 'role' => 'menuitem' %>
