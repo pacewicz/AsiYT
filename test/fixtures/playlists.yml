@@ -1,9 +1,17 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
-  creator_id: 1
+  name: Atesting
+  user_id: 1
 
 two:
-  name: MyString
-  creator_id: 1
+  name: Atesting2
+  user_id: 1
+
+three:
+  name: Rtesting
+  user_id: 2
+
+four:
+  name: Rtesting2
+  user_id: 2
