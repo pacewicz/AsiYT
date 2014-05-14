@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140513003024) do
+ActiveRecord::Schema.define(version: 20140514180037) do
 
   create_table "clips", force: true do |t|
     t.string   "yt_id"
@@ -19,9 +19,17 @@ ActiveRecord::Schema.define(version: 20140513003024) do
     t.datetime "updated_at"
   end
 
+  create_table "playlist_contributors", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "playlist_id"
+    t.integer  "role"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "playlists", force: true do |t|
     t.string   "name"
-    t.integer  "creator_id"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -29,6 +37,7 @@ ActiveRecord::Schema.define(version: 20140513003024) do
   create_table "users", force: true do |t|
     t.string   "nick"
     t.string   "email"
+    t.string   "password"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

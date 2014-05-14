@@ -5,7 +5,7 @@ class PlaylistsController < ApplicationController
   end
 
   def index
-    @playlists = Playlist.all
+    @playlists = User.find_by_nick("Andrzej").playlists
   end
   def create
     @playlist = Playlist.new(playlist_params)
