@@ -2,7 +2,7 @@ AsiYT::Application.routes.draw do
   #get "playlists/single"
   resources :playlists;
 
-  root 'playlists#show'
+  root 'playlists#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
