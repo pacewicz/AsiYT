@@ -116,7 +116,9 @@
           <ul class="dropdown-menu" role="menu" aria-labelledby="playlist-settings-btn">
             <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Rename</a></li>
             <li role="presentation" class="divider"></li>
-            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Delete playlist</a></li>
+            <li role="presentation">
+              <a href="#"><%= link_to 'Delete playlist', @playlist, method: :delete, data: { confirm: 'Are you sure you want to delete playlist with all clips?' }, 'tabindex' => '-1', 'role' => 'menuitem' %></a>
+            </li>
           </ul>
         </div>
 
@@ -128,7 +130,7 @@
 
       <h2>Playlist name</h2>
       <ul class="sidebar-list">
-
+        
         <% (1..20).each do |i| %>
             <li>
               <div class="item-list-item">
