@@ -3,7 +3,7 @@ class PlaylistsController < ApplicationController
     @playlist = Playlist.find(params[:id])
   end
   def index
-
+  @playlists = Playlist.all
   end
   def create
     @playlist = Playlist.new(playlist_params)

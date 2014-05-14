@@ -14,8 +14,10 @@
         <textarea class="form-control" rows="3"></textarea>
       </div>
       <div class="modal-footer">
+        <div class="alert alert-warning">Not implemented yet</div>
         <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
         <button type="button" class="btn btn-primary" data-dismiss="modal">Add</button>
+
       </div>
     </div>
   </div>
@@ -49,42 +51,53 @@
 </nav>
 
 <div id="wrapper" class="single-container">
-  <div id="playlist-container">
-    <ul>
 
-      <% (1..6).each do |j| %>
+  <% if !@playlists.empty? %>
+      <div class="jumbotron">
+        <h1>Hello, Andrzej!</h1>
 
-          <li>
-            <div class="pl-item">
-              <h2 class="pl-item-name">
-                <a href="playlists/single">Playlist name #<%= j %></a>
-              </h2>
+        <p><a class="btn btn-primary btn-lg" href="#" data-toggle="modal" data-target="#NewPlaylistModal" role="button">Add
+          your first playlist</a></p>
+      </div>
+  <% else %>
 
-              <div class="pl-item-clips-container">
-                <ul>
-                  <% (1..5).each do |i| %>
+      <div id="playlist-container">
+        <ul>
 
-                      <li>
-                        <div class="clip-item">
-                          <a class="item-preview-img-a" href="playlists/single">
-                            <img class="preview-img" src="<%= asset_path 'thumb.png' %>" width="200"/>
-                          </a>
+          <% @playlists.each do |playlist| %>
 
-                          <h3 class="small">
-                            <a href="playlists/single">The Rolling Stones - quite long music title #<%= i %></a>
-                          </h3>
-                        </div>
-                      </li>
+              <li>
+                <div class="pl-item">
+                  <h2 class="pl-item-name">
+                    <%= link_to playlist.name, playlist_path(playlist) %>
+                  </h2>
 
-                  <% end %>
+                  <div class="pl-item-clips-container">
+                    <ul>
+                      <% (1..5).each do |i| %>
 
-                </ul>
-              </div>
-            </div>
-          </li>
+                          <li>
+                            <div class="clip-item">
+                              <a class="item-preview-img-a" href="playlists/single">
+                                <img class="preview-img" src="<%= asset_path 'thumb.png' %>" width="200"/>
+                              </a>
 
-      <% end %>
+                              <h3 class="small">
+                                <a href="playlists/single">The Rolling Stones - quite long music title #<%= i %></a>
+                              </h3>
+                            </div>
+                          </li>
 
-    </ul>
-  </div>
+                      <% end %>
+
+                    </ul>
+                  </div>
+                </div>
+              </li>
+
+          <% end %>
+
+        </ul>
+      </div>
+  <% end %>
 </div>
