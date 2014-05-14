@@ -3,3 +3,7 @@ cache: bundler
 rvm:
   - 2.1.1
   - ruby-head
+before_script:
+  - rake db:drop RAILS_ENV=test
+  - rake db:migrate RAILS_ENV=test
+  - rake db:seed RAILS_ENV=test
