@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  #before_filter :authenticate_user!
+  before_filter :authenticate_user!
 
   def index
     @users = User.all
@@ -11,5 +11,4 @@ class UsersController < ApplicationController
       redirect_to :back, :alert => "Access denied."
     end
   end
-
 end
