@@ -9,6 +9,7 @@ class PlaylistsController < ApplicationController
   end
   def create
     @playlist = Playlist.new(playlist_params)
+    @playlist.user_id = 1
     @playlist.save
     redirect_to :back
   end

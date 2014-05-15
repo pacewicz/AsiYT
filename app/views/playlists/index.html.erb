@@ -77,17 +77,21 @@
 
                   <div class="pl-item-clips-container">
                     <ul>
-                      <% (1..5).each do |i| %>
+                      <% playlist.clips.each do |i| %>
 
                           <li>
                             <div class="clip-item">
-                              <a class="item-preview-img-a" href="playlists/single">
-                                <img class="preview-img" src="<%= asset_path 'thumb.png' %>" width="200"/>
+                              <a class="item-preview-img-a" href="<%= playlist_path(playlist) %>">
+                                <img class="preview-img" src="<%= i.thumbnail %>" width="200"/>
                               </a>
 
                               <h3 class="small">
-                                <a href="playlists/single">The Rolling Stones - quite long music title #<%= i %></a>
+                                <a href="<%= playlist_path(playlist) %>"><%= i.title %></a>
                               </h3>
+
+                              <h4 class="small">
+                                <p><%= playlist.updated_at.to_s %></p>
+                              </h4>
                             </div>
                           </li>
 
