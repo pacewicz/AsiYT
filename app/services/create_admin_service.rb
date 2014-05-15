@@ -1,8 +1,9 @@
 class CreateAdminService
   def call
-    user = User.find_or_create_by!(email: Rails.application.secrets.admin_email) do |user|
-        user.password = Rails.application.secrets.admin_password
-        user.password_confirmation = Rails.application.secrets.admin_password
-      end
+    user = User.find_or_create_by!(email: "andrew@wp.pl") do |user|
+      user.nick = "Andrzej"
+      user.password = "test12345"
+      user.password_confirmation = "test12345"
+    end
   end
 end
