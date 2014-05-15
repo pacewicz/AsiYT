@@ -1,6 +1,9 @@
 <p>Guest view</p>
 
 <% if user_signed_in? %>
+    <h3>Hello <%= current_user.nick %></h3>
+
+    <li><%= link_to 'My playlists', playlists_path %></li>
     <li><%= link_to 'Edit account', edit_user_registration_path %></li>
     <li> <%= link_to 'Sign out', destroy_user_session_path %></li>
 
