@@ -1,10 +1,6 @@
 <div id="wrapper" class="single-container">
-
-
   <div class="jumbotron">
     <h1>Hello, <%= user_signed_in? ? current_user.nick : "Stranger" %></h1>
-
-
     <p>
       <% if user_signed_in? %>
           <%= link_to 'My playlists', playlists_path, :class => 'btn btn-primary btn-lg', :role => 'button' %>
