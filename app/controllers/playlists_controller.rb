@@ -6,7 +6,7 @@ class PlaylistsController < ApplicationController
      if @playlist.clips.empty?
        redirect_to :controller => 'clips', :action => 'show', :id => 0, :playlist_id => params[:id]
      else
-      redirect_to :controller => 'clips', :action => 'show', :id => @playlist.clips.first.id, :playlist_id => @playlist_id
+      redirect_to :controller => 'clips', :action => 'show', :id => @playlist.clips.first.id, :playlist_id => @playlist.id
      end
   end
 
