@@ -53,12 +53,12 @@
 
                           <li>
                             <div class="clip-item">
-                              <a class="item-preview-img-a" href="<%= playlist_path(playlist) %>">
+                              <a class="item-preview-img-a" href="/playlists/<%= playlist.id %>/clips/<%= i.id %>">
                                 <img class="preview-img" src="<%= i.thumbnail %>" width="200"/>
                               </a>
 
                               <h3 class="small">
-                                <a href="<%= playlist_path(playlist) %>"><%= i.title %></a>
+                                <a href="/playlists/<%= playlist.id %>/clips/<%= i.id %>"><%= i.title %></a>
                               </h3>
 
                               <h4 class="small">

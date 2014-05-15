@@ -1,9 +1,17 @@
 class ClipsController < ApplicationController
   before_filter :authenticate_user!
-  before_action :set_clip, only: [:edit, :update, :destroy]
+  before_action :set_clip, only: [:create, :edit, :update, :destroy, :index, :show]
+
+  def index
+
+  end
 
   def show
 
+  end
+
+  def new
+    redirect_to :controller => 'clips', :action => 'show', :id => 0, :playlist_id => @playlist_id
   end
 
   def create
@@ -35,12 +43,13 @@ class ClipsController < ApplicationController
   end
   private
 
-  def set_playlist
-    @clip = Clip.find(params[:id])
-    @playlist = @clip.playlist
+  def set_clip
+    @clip = Clip.find(params[:id]) if params[:id] and (params[:id] != "0")
+    @playlist_id = params[:playlist_id]
+    @playlist = Playlist.find(@playlist_id)
   end
 
   def clip_params
-    params.require(:clip).permit(:url, :description)
+    params.require(:clip).permit(:url, :description, :playlist_id, :user_id)
   end
 end

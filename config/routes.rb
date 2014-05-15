@@ -12,15 +12,10 @@ AsiYT::Application.routes.draw do
 
   end
   # root 'playlists#index'
-  resources :playlists;
+  resources :playlists do
+    resources :clips
+  end
   resources :users;
-
-#oldbegin
-  # resources :playlists;
-
-  # root 'playlists#index'
-
-  #oldend
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

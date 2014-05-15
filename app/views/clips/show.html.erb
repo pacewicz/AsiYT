@@ -75,6 +75,35 @@
   </div>
 </div>
 
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="../../">Hawks2 YT.</a>
+    </div>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li>
+          <%= link_to 'Playlists', playlists_path %>
+        </li>
+      </ul>
+
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+          <form class="navbar-form navbar-left" role="search">
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="username">
+              <input type="password" class="form-control"/>
+            </div>
+            <button type="submit" class="btn btn-default">Log in</button>
+          </form>
+        </li>
+        <li><a href="#">Sign up</a></li>
+
+      </ul>
+    </div>
+  </div>
+</nav>
+
 <div id="wrapper">
 
   <div id="sidebar-wrapper">
@@ -107,10 +136,10 @@
       <h2><%= @playlist.name %></h2>
       <ul class="sidebar-list">
 
-        <% @playlist.clips.each do |clip| %>
+        <% if not @playlist.clips.empty? then @playlist.clips.each do |clip| %>
             <li>
               <div class="item-list-item">
-                <a class="item-preview-img-a-small" href="<%= clip.id %>">
+                <a class="item-preview-img-a-small" href="/playlists/<%= @playlist.id %>/clips/<%= clip.id %>">
                                 <span class="thumb-img-span">
                                     <img class="preview-img-small" src="<%= clip.thumbnail %>" width="100"/>
                                 </span>
@@ -119,7 +148,7 @@
               </div>
             </li>
 
-        <% end %>
+        <% end end %>
 
       </ul>
     </div>
@@ -130,20 +159,20 @@
         <div class="row">
           <div class="col-md-12">
 
-            <%
-               v = params[:v]
-               if v.nil? then vi = @playlist.clips.first end
-               (vi ||= @playlist.clips.find(v)) if @playlist.clips
-               video = VideoInfo.new("http://www.youtube.com/watch?v="+vi.yt_id)
+            <% if ! @playlist.clips.empty? then
+                vi = VideoInfo.new("http://www.youtube.com/watch?v="+@clip.yt_id)
+               end
             %>
-
             <div class="well current-clip-container">
-              <h1><%= vi.title %></h1>
+              <% if not @playlist.clips.empty?  %>
+              <h1><%= @clip.title %></h1>
+              <h3><%= @clip.description %></h3>
+              <h5><%= vi.duration %> seconds long</h5>
 
-              <h3><%= vi.description %></h3>
-              <h5><%= video.duration %> seconds long</h5>
-
-              <iframe width="853" height="480" src="//www.youtube.com/embed/<%= vi.yt_id %>?vq=hd720" frameborder="0" allowfullscreen></iframe>
+              <iframe width="853" height="480" src="//www.youtube.com/embed/<%= @clip.yt_id %>?vq=hd720" frameborder="0" allowfullscreen></iframe>
+              <% else %>
+                <h2>Feel free to add your first clip</h2>
+              <% end %>
             </div>
           </div>
         </div>
