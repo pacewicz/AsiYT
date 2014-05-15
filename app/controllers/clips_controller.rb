@@ -1,4 +1,5 @@
 class ClipsController < ApplicationController
+  before_filter :authenticate_user!
   before_action :set_clip, only: [:create, :edit, :update, :destroy, :index, :show]
 
   def index

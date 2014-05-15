@@ -1,4 +1,5 @@
 class PlaylistsController < ApplicationController
+  before_filter :authenticate_user!
   before_action :set_playlist, only: [:show, :edit, :update, :destroy]
 
   def show
