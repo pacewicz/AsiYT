@@ -15,7 +15,7 @@ class ClipsController < ApplicationController
   end
 
   def create
-    @clip = Clip.new(ClipsHelper.params_from_url_and_desc(clip_params))
+    @clip = Clip.new(params_from_url_and_desc(clip_params))
     @clip.user_id = 1
     @clip.save
     redirect_to :back
@@ -50,6 +50,12 @@ class ClipsController < ApplicationController
   end
 
   def clip_params
-    params.require(:clip).permit(:url, :description, :playlist_id, :user_id)
+    params.require(:clip).permit(:yt_id, :description, :playlist_id, :user_id)
+  end
+
+  def params_from_url_and_desc(h)
+    vi = VideoInfo.new(h[:yt_id])
+    {yt_id: vi.video_id, title: vi.title, thumbnail: vi.thumbnail_medium, description: h[:description], playlist_id: @playlist_id, user_id: 1 }
+    # later, we'll set the uid to h[:user_id]
   end
 end

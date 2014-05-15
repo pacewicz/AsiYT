@@ -33,16 +33,18 @@
         <h4 class="modal-title" id="AddClipModalLabel">Add new clip</h4>
       </div>
       <div class="modal-body">
+        <%= form_for :clip, :html => {:class => "form-horizontal"}, method: :create, url: "../clips" do |form| %>
         <div class="input-group">
           <span class="input-group-addon">url</span>
-          <input type="text" class="form-control" placeholder="http://">
+          <%= form.text_field( :yt_id, :class => 'form-control', :placeholder => "http://", :value => "" )%>
         </div>
         <label>Description</label>
-        <textarea class="form-control" rows="3"></textarea>
+        <%= form.text_area( :description, :class => 'form-control', :rows => 3) %>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-        <button type="button" class="btn btn-primary" data-dismiss="modal">Add</button>
+        <%= form.submit :class => "btn btn-primary", 'value' => 'Add' %>
+        <% end %>
       </div>
     </div>
   </div>
