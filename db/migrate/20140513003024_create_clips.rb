@@ -6,6 +6,7 @@ class CreateClips < ActiveRecord::Migration
       t.belongs_to :user
       t.string :title
       t.string :thumbnail
+      t.string :description
 
 
       t.timestamps
