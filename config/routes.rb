@@ -3,15 +3,14 @@ AsiYT::Application.routes.draw do
 
   root :to => "guests#index"
 
-  devise_for :users
+  # devise_for :users
 
 
 
-  # devise_for :users do
-  #
-  #   get "/users/sign_out" => "devise/sessions#destroy", :as => :destroy_user_session_path
-  #
-  # end
+  devise_for :users do
+    get "/users/sign_out" => "devise/sessions#destroy", :as => :destroy_user_session_path
+
+  end
   # root 'playlists#index'
   resources :playlists;
   resources :users;

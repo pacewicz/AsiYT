@@ -149,3 +149,8 @@ a.item-preview-img-a-small.active, a.item-preview-img-a-small:hover {
 .current-clip-container iframe {
     margin: 10px auto;
 }
+
+.authform {
+    width: 30%;
+    margin: 80px auto 0 auto;
+}
