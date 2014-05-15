@@ -2,10 +2,15 @@ class PlaylistsController < ApplicationController
   before_action :set_playlist, only: [:show, :edit, :update, :destroy]
 
   def show
+     if @playlist.clips.empty?
+       redirect_to :controller => 'clips', :action => 'show', :id => 0, :playlist_id => params[:id]
+     else
+      redirect_to :controller => 'clips', :action => 'show', :id => @playlist.clips.first.id, :playlist_id => @playlist_id
+     end
   end
 
   def index
-    @playlists = User.find_by_nick("Andrzej").playlists
+    @playlists = User.first.playlists
   end
   def create
     @playlist = Playlist.new(playlist_params)

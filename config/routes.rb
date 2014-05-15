@@ -1,6 +1,8 @@
 AsiYT::Application.routes.draw do
   #get "playlists/single"
-  resources :playlists;
+  resources :playlists do
+    resources :clips
+  end
 
   root 'playlists#index'
 
