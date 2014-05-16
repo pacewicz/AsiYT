@@ -11,11 +11,11 @@ class PlaylistsController < ApplicationController
   end
 
   def index
-    @playlists = User.first.playlists
+    @playlists = current_user.playlists
   end
   def create
     @playlist = Playlist.new(playlist_params)
-    @playlist.user_id = 1
+    @playlist.user_id = current_user.id
     @playlist.save
     redirect_to :back
   end

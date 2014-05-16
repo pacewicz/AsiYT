@@ -16,7 +16,7 @@ class ClipsController < ApplicationController
 
   def create
     @clip = Clip.new(params_from_url_and_desc(clip_params))
-    @clip.user_id = 1
+    @clip.user_id = current_user.id
     @clip.save
     redirect_to :controller => 'clips', :action => 'show', :playlist_id => @playlist_id, :id => @clip.id
   end
@@ -44,9 +44,13 @@ class ClipsController < ApplicationController
   private
 
   def set_clip
-    @clip = Clip.find(params[:id]) if params[:id] and (params[:id] != "0")
-    @playlist_id = params[:playlist_id]
-    @playlist = Playlist.find(@playlist_id)
+    begin
+      @clip = Clip.find(params[:id]) if params[:id] and (params[:id] != "0")
+      @playlist = @clip.playlist
+      @playlist_id = @playlist.id
+    rescue
+      redirect_to controller: 'playlists', action: 'index'
+    end
   end
 
   def clip_params
@@ -55,7 +59,6 @@ class ClipsController < ApplicationController
 
   def params_from_url_and_desc(h)
     vi = VideoInfo.new(h[:yt_id])
-    {yt_id: vi.video_id, title: vi.title, thumbnail: vi.thumbnail_medium, description: h[:description], playlist_id: @playlist_id, user_id: 1 }
-    # later, we'll set the uid to h[:user_id]
+    {yt_id: vi.video_id, title: vi.title, thumbnail: vi.thumbnail_medium, description: h[:description], playlist_id: @playlist_id, user_id: current_user.id }
   end
 end
