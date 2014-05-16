@@ -6,9 +6,14 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
-    unless @user == current_user
-      redirect_to :back, :alert => "Access denied."
+    begin
+      @user = User.find(params[:id])
+      unless @user == current_user
+        redirect_to :back, :alert => "Access denied."
+      end
+    rescue
+      reset_session
+      redirect_to :controller => 'guests', action: 'index'
     end
   end
 end

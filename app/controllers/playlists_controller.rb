@@ -43,7 +43,11 @@ class PlaylistsController < ApplicationController
   private
 
   def set_playlist
-    @playlist = Playlist.find(params[:id])
+    begin
+      @playlist = Playlist.find(params[:id])
+    rescue
+      redirect_to :controller => 'playlists', :action => 'index'
+    end
   end
 
   def playlist_params
