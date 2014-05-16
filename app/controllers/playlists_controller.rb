@@ -27,7 +27,7 @@ class PlaylistsController < ApplicationController
     @playlist = Playlist.new(playlist_params)
     @playlist.user_id = current_user.id
     @playlist.save
-    redirect_to :back
+    redirect_to controller: 'playlists', action: 'index'
   end
 
   def edit

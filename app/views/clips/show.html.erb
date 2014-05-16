@@ -139,6 +139,10 @@
               <iframe width="853" height="480" src="//www.youtube.com/embed/<%= @clip.yt_id %>?vq=hd720" frameborder="0" allowfullscreen></iframe>
               <% else %>
                 <h2>Feel free to add your first clip</h2>
+                  <br/>
+                  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#AddClipModal">
+                    <span class="glyphicon glyphicon glyphicon-plus"></span> Add now
+                  </button>
               <% end %>
             </div>
           </div>
