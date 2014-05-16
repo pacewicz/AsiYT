@@ -1,6 +1,7 @@
 <% if user_signed_in? %>
     <ul class="nav navbar-nav">
       <li><%= link_to 'Playlists', playlists_path %></li>
+      <li><%= link_to 'Shared Playlists', playlists_path(:shared => "1") %></li>
       <% if current_page?(playlists_path) %>
           <li><a href="#" data-toggle="modal" data-target="#NewPlaylistModal">New playlist</a></li>
       <% end %>

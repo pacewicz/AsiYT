@@ -11,8 +11,13 @@ class PlaylistsController < ApplicationController
   end
 
   def index
-    @playlists = current_user.playlists
+    unless params[:shared]
+      @playlists = current_user.playlists
+    else
+      @playlists = PlaylistContributor.where(:user_id => current_user.id).map { |pc| Playlist.find(pc.playlist_id) }
+    end
   end
+
   def create
     @playlist = Playlist.new(playlist_params)
     @playlist.user_id = current_user.id
