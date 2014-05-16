@@ -46,8 +46,8 @@ class ClipsController < ApplicationController
   def set_clip
     begin
       @clip = Clip.find(params[:id]) if params[:id] and (params[:id] != "0")
-      @playlist = @clip.playlist
-      @playlist_id = @playlist.id
+      @playlist_id = params[:playlist_id]
+      @playlist = Playlist.find(@playlist_id)
     rescue
       redirect_to controller: 'playlists', action: 'index'
     end

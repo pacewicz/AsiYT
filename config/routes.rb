@@ -13,6 +13,7 @@ AsiYT::Application.routes.draw do
   # root 'playlists#index'
   resources :playlists do
     resources :clips
+    resources :playlist_contributors
   end
   resources :users;
 
