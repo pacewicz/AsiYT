@@ -7,7 +7,7 @@ class ClipsController < ApplicationController
   end
 
   def show
-
+    if (params[:id] == "0" and not @playlist.clips.empty?) then redirect_to :controller => 'playlists', :action => 'show', :id => @playlist_id end
   end
 
   def new
@@ -18,7 +18,7 @@ class ClipsController < ApplicationController
     @clip = Clip.new(params_from_url_and_desc(clip_params))
     @clip.user_id = 1
     @clip.save
-    redirect_to :back
+    redirect_to :controller => 'clips', :action => 'show', :playlist_id => @playlist_id, :id => @clip.id
   end
 
   def edit
