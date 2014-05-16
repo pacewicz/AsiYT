@@ -30,9 +30,12 @@
   <% if @playlists.empty? %>
       <div class="jumbotron">
         <h1>Hello, <%= current_user.nick %>!</h1>
-
+        <% unless params[:shared] %>
         <p><a class="btn btn-primary btn-lg" href="#" data-toggle="modal" data-target="#NewPlaylistModal" role="button">Add
           your first playlist</a></p>
+        <% else %>
+            <p>Nothing to see here.</p>
+        <% end %>
       </div>
   <% else %>
 

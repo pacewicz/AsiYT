@@ -14,7 +14,12 @@ class PlaylistsController < ApplicationController
     unless params[:shared]
       @playlists = current_user.playlists
     else
-      @playlists = PlaylistContributor.where(:user_id => current_user.id).map { |pc| Playlist.find(pc.playlist_id) }
+      shares = PlaylistContributor.where(:user_id => current_user.id)
+      unless shares.empty?
+        @playlists = shares.map { |pc| Playlist.find(pc.playlist_id) }
+      else
+        @playlists = []
+      end
     end
   end
 
