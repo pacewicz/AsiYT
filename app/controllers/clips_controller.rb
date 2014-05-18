@@ -16,7 +16,6 @@ class ClipsController < ApplicationController
 
   def create
     @clip = Clip.new(params_from_url_and_desc(clip_params))
-    @clip.user_id = current_user.id
     @clip.save
     redirect_to :controller => 'clips', :action => 'show', :playlist_id => @playlist_id, :id => @clip.id
   end
