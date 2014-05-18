@@ -1,6 +1,7 @@
 class ClipsController < ApplicationController
   before_filter :authenticate_user!
   before_action :set_clip, only: [:create, :edit, :update, :destroy, :index, :show, :rate]
+  before_filter :verify_user_access
 
   def index
     redirect_to :controller => 'playlists', :action => 'show', :id => @playlist.id
