@@ -14,7 +14,12 @@ class PlaylistsController < ApplicationController
     unless params[:shared]
       @playlists = current_user.playlists
     else
-      @playlists = PlaylistContributor.where(:user_id => current_user.id).map { |pc| Playlist.find(pc.playlist_id) }
+      shares = PlaylistContributor.where(:user_id => current_user.id)
+      unless shares.empty?
+        @playlists = shares.map { |pc| Playlist.find(pc.playlist_id) }
+      else
+        @playlists = []
+      end
     end
   end
 
@@ -22,7 +27,7 @@ class PlaylistsController < ApplicationController
     @playlist = Playlist.new(playlist_params)
     @playlist.user_id = current_user.id
     @playlist.save
-    redirect_to :back
+    redirect_to controller: 'playlists', action: 'index'
   end
 
   def edit
