@@ -41,6 +41,8 @@ gem 'devise', '3.2.3'
 
 gem "shelly-dependencies", :group => :production
 
+gem 'jquery-star-rating-rails'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

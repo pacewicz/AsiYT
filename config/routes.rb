@@ -5,17 +5,29 @@ AsiYT::Application.routes.draw do
 
   # devise_for :users
 
+  # get 'playlists/:id/clips/:id/rate/:id', :to => 'clips#rate'
 
   devise_for :users do
     get "/users/sign_out" => "devise/sessions#destroy", :as => :destroy_user_session_path
 
   end
   # root 'playlists#index'
+
+  # resources :playlists do
+  #   resources :clips, :member => {:rate => :post}
+  #   resources :playlist_contributors
+  # end
+
+
   resources :playlists do
-    resources :clips
+    resources :clips do
+      resources :ratings
+    end
     resources :playlist_contributors
   end
   resources :users;
+
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

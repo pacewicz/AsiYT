@@ -1,6 +1,6 @@
 class ClipsController < ApplicationController
   before_filter :authenticate_user!
-  before_action :set_clip, only: [:create, :edit, :update, :destroy, :index, :show]
+  before_action :set_clip, only: [:create, :edit, :update, :destroy, :index, :show, :rate]
 
   def index
 
@@ -41,6 +41,7 @@ class ClipsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
   private
 
   def set_clip

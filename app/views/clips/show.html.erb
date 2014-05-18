@@ -139,19 +139,20 @@
       <h2><%= @playlist.name %></h2>
       <ul class="sidebar-list">
 
-        <% if not @playlist.clips.empty? then @playlist.clips.each do |clip| %>
-            <li>
-              <div class="item-list-item">
-                <a class="item-preview-img-a-small" href="/playlists/<%= @playlist.id %>/clips/<%= clip.id %>">
+        <% if not @playlist.clips.empty? then
+             @playlist.clips.each do |clip| %>
+                <li>
+                  <div class="item-list-item">
+                    <a class="item-preview-img-a-small" href="/playlists/<%= @playlist.id %>/clips/<%= clip.id %>">
                                 <span class="thumb-img-span">
                                     <img class="preview-img-small" src="<%= clip.thumbnail %>" width="100"/>
                                 </span>
-                  <span class="clip-name"><%= clip.title %></span>
-                </a>
-              </div>
-            </li>
+                      <span class="clip-name"><%= clip.title %></span>
+                    </a>
+                  </div>
+                </li>
 
-        <% end end %>
+            <% end end %>
 
       </ul>
     </div>
@@ -162,19 +163,31 @@
         <div class="row">
           <div class="col-md-12">
 
-            <% if ! @playlist.clips.empty? then
-                vi = VideoInfo.new("http://www.youtube.com/watch?v="+@clip.yt_id)
+            <% if !@playlist.clips.empty? then
+                 vi = VideoInfo.new("http://www.youtube.com/watch?v="+@clip.yt_id)
                end
             %>
             <div class="well current-clip-container">
-              <% if not @playlist.clips.empty?  %>
-              <h1><%= @clip.title %></h1>
-              <h3><%= @clip.description %></h3>
-              <h5><%= vi.duration %> seconds long</h5>
+              <% if not @playlist.clips.empty? %>
 
-              <iframe width="853" height="480" src="//www.youtube.com/embed/<%= @clip.yt_id %>?vq=hd720" frameborder="0" allowfullscreen></iframe>
+
+                  <input name="star2" type="radio" class="star"/>
+                  <input name="star2" type="radio" class="star"/>
+                  <input name="star2" type="radio" class="star" checked="checked"/>
+                  <input name="star2" type="radio" class="star"/>
+                  <input name="star2" type="radio" class="star"/>
+
+                  <h1><%= @clip.title %></h1>
+
+
+                  <h3><%= @clip.description %></h3>
+
+
+                  <h5><%= vi.duration %> seconds long</h5>
+
+                  <iframe width="853" height="480" src="//www.youtube.com/embed/<%= @clip.yt_id %>?vq=hd720" frameborder="0" allowfullscreen></iframe>
               <% else %>
-                <h2>Feel free to add your first clip</h2>
+                  <h2>Feel free to add your first clip</h2>
               <% end %>
             </div>
           </div>
