@@ -4,23 +4,27 @@ class PlaylistContributorsController < ApplicationController
 
   def create
     begin
-    @contributor = PlaylistContributor.new()
-    @contributor.user_id = User.find_by_nick(params[:playlist_contributor][:user_id]).id
-    @contributor.playlist_id = @playlist.id
-    @contributor.save
-    redirect_to :back
+      @contributor = PlaylistContributor.new()
+      @contributor.user_id = User.find_by_nick(params[:playlist_contributor][:user_id]).id
+      @contributor.playlist_id = @playlist.id
+      @contributor.save
+      redirect_to :back
     rescue
       redirect_to :back, :alert => "nope"
     end
   end
 
   def destroy
-    @contributor.destroy
-    respond_to do |format|
-      format.html { redirect_to contributors_url }
-      format.json { head :no_content }
+    begin
+      params[:contributor_nick].each do |key, value|
+        PlaylistContributor.where(:playlist_id => @playlist.id, :user_id => User.find_by_nick(key)).destroy_all
+      end
+      redirect_to :back
+    rescue
+      redirect_to :back, :alert => "nope"
     end
   end
+
   private
 
   def set_playlist

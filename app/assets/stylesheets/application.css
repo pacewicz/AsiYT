@@ -154,3 +154,23 @@ a.item-preview-img-a-small.active, a.item-preview-img-a-small:hover {
     width: 30%;
     margin: 80px auto 0 auto;
 }
+
+#contributors-table {
+    margin: 0 auto;
+}
+#contributors-table tr td,  tr th {
+    text-align: center;
+}
+
+
+#contributors-panel {
+    margin-top: 15px;
+}
+
+#del-contr-btn {
+    width: 100%;
+}
+
+/*.contr-table-right-column {*/
+    /*text-align: center;*/
+/*}*/
