@@ -3,7 +3,7 @@ class ClipsController < ApplicationController
   before_action :set_clip, only: [:create, :edit, :update, :destroy, :index, :show]
 
   def index
-
+    redirect_to :controller => 'playlists', :action => 'show', :id => @playlist.id
   end
 
   def show
