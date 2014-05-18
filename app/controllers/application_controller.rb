@@ -14,10 +14,15 @@ class ApplicationController < ActionController::Base
   end
 
   def verify_user_access
-    @pid =  params[:playlist_id]
-    @pid ||= @playlist.id
-    if Playlist.where(:user_id => current_user.id, :id => @pid).empty? or ((PlaylistContributor.where(playlist_id: @pid).count > 0) and PlaylistContributor.where(user_id: current_user.id, playlist_id: @pid).count > 0) then
-      render :status  => :forbidden, :text => "Access denied."
+    if params[:playlist_id] then
+      @pid = params[:playlist_id] #playlists
+    else
+      @pid = @playlist.id #clips
     end
+    not_owner = Playlist.where(:user_id => current_user.id, :id => @pid).empty?
+    if not_owner && (!not_owner and (PlaylistContributor.where(playlist_id: @pid).count > 0) and PlaylistContributor.where(user_id: current_user.id, playlist_id: @pid).count == 0) then
+      render :status  => :forbidden, :text => "Access denied. Not owner: "+Playlist.where(:user_id => current_user.id, :id => @pid).empty?.to_s+"<br/>Not shared: "+((PlaylistContributor.where(playlist_id: @pid).count > 0) and PlaylistContributor.where(user_id: current_user.id, playlist_id: @pid).count == 0).to_s
+    end
+    #render :status  => :forbidden, :text => "Access denied. Not owner: "+Playlist.where(:user_id => current_user.id, :id => @pid).empty?.to_s+"<br/>Not shared: "+((PlaylistContributor.where(playlist_id: @pid).count > 0) and PlaylistContributor.where(user_id: current_user.id, playlist_id: @pid).count == 0).to_s
   end
 end

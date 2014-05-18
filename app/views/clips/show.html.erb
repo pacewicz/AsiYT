@@ -137,6 +137,7 @@
       </div>
 
       <h2><%= @playlist.name %></h2>
+      <p>Owner: <%= User.find(@playlist.user_id).nick %></p>
       <ul class="sidebar-list">
 
         <% if not @playlist.clips.empty? then
