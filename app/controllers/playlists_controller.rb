@@ -1,7 +1,7 @@
 class PlaylistsController < ApplicationController
   before_filter :authenticate_user!
   before_action :set_playlist, only: [:show, :edit, :update, :destroy]
-  before_filter :verify_user_access, only: [:show, :edit, :update, :destroy, :create]
+  before_filter :verify_user_access, only: [:show, :edit, :update, :destroy]
 
   def show
      if @playlist.clips.empty?
