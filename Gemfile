@@ -43,6 +43,10 @@ gem "shelly-dependencies", :group => :production
 
 gem 'jquery-star-rating-rails'
 
+group :test, :development do
+  gem 'rspec-rails', '~> 3.0.0.beta'
+end
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
