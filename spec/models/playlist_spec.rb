@@ -13,20 +13,20 @@ describe Playlist, :type => :model do
 
   describe "#new" do
     it 'returns a new playlist object' do
-      @playlist.should be_an_instance_of Playlist
+      expect(@playlist).to be_an_instance_of Playlist
     end
   end
 
   describe "#playlist" do
     it "returns the correct user" do
-      @playlist.user_id.should eql 2
+      # @playlist.user_id.expect eql 2
+      expect( @playlist.user_id ).to eql 2
     end
   end
 
   describe "#id" do
     it "returns the correct id" do
-      @playlist.id.should eql 1
+      expect(@playlist.id).to eql 1
     end
   end
-
 end
