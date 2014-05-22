@@ -8,3 +8,8 @@ rvm:
     #recipients:
       #secure: R/YXfUjrTqnHRgRK4Fm/mL4VUb1G14qvQ5OffJIInc6kmOFATZA60F2sG6LeDfJ5AAh/c3wvh/g0IM1oc2dEgOYLHeUB0fgMFQ9/y3QjWD+c3DcVOJYXKPa/TRbugKOu8fY0Crs/WXUBSYOJd7aifBexv7Pr+gsiIRD0gRdm75g=
     #on_success: always
+before_script:
+  - bundle exec rake db:drop RAILS_ENV=test
+  - bundle exec rake db:migrate RAILS_ENV=test
+  - bundle exec rake db:seed RAILS_ENV=test
+  
