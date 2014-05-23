@@ -5,6 +5,10 @@
       <% if user_signed_in? %>
           <%= link_to 'My playlists', playlists_path, :class => 'btn btn-primary btn-lg', :role => 'button' %>
       <% else %>
+
+            <p>The application allows you to create and share playlists consisting of YouTube videos.</p>
+            <p>Sign up or log in now to start sharing what you enjoy listening to or watching!</p>
+
           <%= link_to 'Sign in', new_user_session_path, :class => 'btn btn-primary btn-lg', :role => 'button' %>
           or
           <%= link_to 'Sign up', new_user_registration_path, :class => 'btn btn-lg', :role => 'button' %>
