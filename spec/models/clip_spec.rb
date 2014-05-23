@@ -1,8 +1,6 @@
 require 'spec_helper'
 
 describe Clip, :type => :model do
-  # pending "add some examples to (or delete) #{__FILE__}"
-
 
   before :each do
     @clip = Clip.new
@@ -13,6 +11,7 @@ describe Clip, :type => :model do
     @clip.description = nil
   end
 
+  #CREATE
   describe "#new" do
     it 'returns a new clip object' do
       expect(@clip).to be_an_instance_of Clip
@@ -24,6 +23,7 @@ describe Clip, :type => :model do
 
   end
 
+  #READ
   describe "#playlist_id" do
     it "returns the correct playlist_id" do
       expect(@clip.playlist_id).to eql 2
@@ -33,6 +33,27 @@ describe Clip, :type => :model do
   describe "#title" do
     it "returns the correct clip title" do
       expect(@clip.title).to eql "Chillstep - CMYK - Yellow Chillstep Mix - by Ideal ..."
+    end
+  end
+
+  #UPDATE
+  describe "#update/:id'" do
+    before(:each) do
+      @attributes = { :playlist_id => 5, :yt_id => "MyNewName", :description => "My description" }
+      @clip.update(@attributes);
+      @clip.reload
+    end
+
+    it { expect(@clip.playlist_id).to eql @attributes[:playlist_id] }
+    it { expect(@clip.yt_id).to eql @attributes[:yt_id] }
+    it { expect(@clip.description).to eql @attributes[:description] }
+  end
+
+  #DELETE
+  describe "#destroy" do
+    it 'returns true when clip is destroyed' do
+      @clip.destroy
+      expect(@clip.destroyed?).to eql true
     end
   end
 
